@@ -1,4 +1,5 @@
 package com.example.weather.data.remote.model
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -33,7 +34,35 @@ data class Weather(
     var weather: List<WeatherX>? = listOf(),
     @SerializedName("wind")
     var wind: Wind? = Wind()
-) : Parcelable
+) : Parcelable {
+    val locationNameDisplay: String
+        get() {
+            val name = name?:"n/a"
+            return "$name"
+        }
+    val weatherNameDisplay: String
+        get() {
+            val weatherName = weather?.first()?.main?:"n/a"
+            return "$weatherName"
+        }
+
+    val temperatureDisplay: String
+        get() {
+            return "${main?.tempMax} °C / ${main?.tempMin} °C Feels like ${main?.feelsLike} °C"
+        }
+
+    val windDisplay: String
+        get() {
+            val speed = wind?.speed?:0.0
+            return "$speed km/h"
+        }
+
+    val pressureDisplay: String
+        get() {
+            val pressure = main?.pressure?:0.0
+            return "$pressure mb"
+        }
+}
 
 @Parcelize
 data class Clouds(
@@ -44,9 +73,9 @@ data class Clouds(
 @Parcelize
 data class Coord(
     @SerializedName("lat")
-    var lat: Double? = 0.0,
+    var lat: String? = null,
     @SerializedName("lon")
-    var lon: Double? = 0.0
+    var lon: String? = null
 ) : Parcelable
 
 @Parcelize

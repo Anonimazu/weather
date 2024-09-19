@@ -92,6 +92,10 @@ dependencies {
     // network
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
+    debugImplementation(libs.chucker)
+
+    // ui tools
+    implementation(libs.compose.cloudy)
 
     // Instrumented tests
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

@@ -8,15 +8,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class WeatherRepositoryImpl@Inject constructor(
+class WeatherRepositoryImpl @Inject constructor(
     private val weatherService: WeatherService
-) : WeatherRepository{
-    override suspend fun getGeoPosition(offset: Int?, limit: Int?, apiKey: String?): Flow<BaseResponse<List<GeoPosition>>> {
+) : WeatherRepository {
+    override suspend fun getGeoPosition(searchText: String?, limit: Int?, apiKey: String?): Flow<BaseResponse<List<GeoPosition>>> {
         return flow {
             // Emit loading state
             emit(BaseResponse.Loading)
             try {
-                val response = weatherService.getGeoPosition(offset, limit, apiKey)
+                val response = weatherService.getGeoPosition(searchText, limit, apiKey)
                 // Emit success state with data
                 emit(BaseResponse.Success(response))
             } catch (e: Exception) {
@@ -26,12 +26,12 @@ class WeatherRepositoryImpl@Inject constructor(
         }
     }
 
-    override suspend fun getWeatherByPosition(latitude: Double?, longitude: Double?, apiKey: String?): Flow<BaseResponse<Weather>> {
+    override suspend fun getWeatherByPosition(latitude: String?, longitude: String?, apiKey: String?): Flow<BaseResponse<Weather>> {
         return flow {
             // Emit loading state
             emit(BaseResponse.Loading)
             try {
-                val response = weatherService.getWeatherByPosition(latitude, longitude, apiKey)
+                val response = weatherService.getWeatherByPosition(latitude, longitude, "metric", apiKey)
                 // Emit success state with data
                 emit(BaseResponse.Success(response))
             } catch (e: Exception) {

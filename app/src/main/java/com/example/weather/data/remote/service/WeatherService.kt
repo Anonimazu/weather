@@ -9,15 +9,16 @@ import retrofit2.http.Query
 interface WeatherService {
     @GET("geo/1.0/direct")
     suspend fun getGeoPosition(
-        @Query("offset") offset: Int?,
+        @Query("q") searchText: String?,
         @Query("limit") limit: Int?,
         @Query("appid") apiKey: String?
     ) : List<GeoPosition>
 
     @GET("data/2.5/weather")
     suspend fun getWeatherByPosition(
-        @Query("lat") latitude: Double?,
-        @Query("lon") longitude: Double?,
+        @Query("lat") latitude: String?,
+        @Query("lon") longitude: String?,
+        @Query("units") unit: String?,
         @Query("appid") apiKey: String?
     ) : Weather
 }

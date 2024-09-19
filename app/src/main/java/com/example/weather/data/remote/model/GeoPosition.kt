@@ -8,11 +8,11 @@ data class GeoPosition(
     @SerializedName("country")
     var country: String? = "",
     @SerializedName("lat")
-    var lat: Double? = null,
+    var lat: String? = null,
     @SerializedName("local_names")
     var localNames: LocalNames? = LocalNames(),
     @SerializedName("lon")
-    var lon: Double? = null,
+    var lon: String? = null,
     @SerializedName("name")
     var name: String? = "",
     @SerializedName("state")

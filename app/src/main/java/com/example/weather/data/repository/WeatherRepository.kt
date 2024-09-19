@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface WeatherRepository {
 
-    suspend fun getGeoPosition(offset: Int?, limit: Int?, apiKey: String?): Flow<BaseResponse<List<GeoPosition>>>
+    suspend fun getGeoPosition(searchText: String?, limit: Int?, apiKey: String?): Flow<BaseResponse<List<GeoPosition>>>
 
-    suspend fun getWeatherByPosition(latitude: Double?, longitude: Double?, apiKey: String?): Flow<BaseResponse<Weather>>
+    suspend fun getWeatherByPosition(latitude: String?, longitude: String?, apiKey: String?): Flow<BaseResponse<Weather>>
 
 }
