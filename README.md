@@ -19,7 +19,7 @@ High level Architecture
 * State management work flow
   * Weather App Sequence diagram
 
-```markdown
+```mermaid
 
 sequenceDiagram
     User->>+App: open
